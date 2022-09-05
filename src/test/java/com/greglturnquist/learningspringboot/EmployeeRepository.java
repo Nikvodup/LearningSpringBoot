@@ -15,20 +15,16 @@
  */
 package com.greglturnquist.learningspringboot;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 /**
  * @author Greg Turnquist
  */
 // tag::code[]
-@Data
-@Document
-public class Image {
+public interface EmployeeRepository extends
+	ReactiveCrudRepository<Employee, String>,
+	ReactiveQueryByExampleExecutor<Employee> {
 
-	@Id final private String id;
-	final private String name;
 }
 // end::code[]

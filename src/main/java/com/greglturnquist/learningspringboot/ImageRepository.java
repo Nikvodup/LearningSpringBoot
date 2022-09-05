@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,19 @@
  */
 package com.greglturnquist.learningspringboot;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
-/**
- * @author Greg Turnquist
- */
+
 // tag::code[]
-@Data
-@Document
-public class Image {
+	@Repository
+public interface ImageRepository
+	extends ReactiveCrudRepository<Image, String> {
 
-	@Id final private String id;
-	final private String name;
+
+
+
+	Mono<Image> findByName(String name);
 }
 // end::code[]

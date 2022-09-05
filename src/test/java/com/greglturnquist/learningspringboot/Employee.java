@@ -16,7 +16,6 @@
 package com.greglturnquist.learningspringboot;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -26,9 +25,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 // tag::code[]
 @Data
 @Document
-public class Image {
+public class Employee {
 
-	@Id final private String id;
-	final private String name;
+	@Id private String id;
+	private String firstName;
+	private String lastName;
+	private String role;
 }
 // end::code[]
