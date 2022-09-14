@@ -16,17 +16,14 @@
 package com.greglturnquist.learningspringboot;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-
+/**
+ * @author Greg Turnquist
+ */
 // tag::code[]
-	@Repository
 public interface ImageRepository
 	extends ReactiveCrudRepository<Image, String> {
-
-
-
 
 	Mono<Image> findByName(String name);
 }

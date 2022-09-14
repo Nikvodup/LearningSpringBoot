@@ -15,6 +15,16 @@
  */
 package com.greglturnquist.learningspringboot;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.UUID;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
@@ -23,21 +33,11 @@ import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.FileSystemUtils;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.UUID;
 
 /**
  * @author Greg Turnquist
  */
 @Service
-
 public class ImageService {
 
 	public static String UPLOAD_ROOT = "upload-dir";
@@ -79,9 +79,7 @@ public class ImageService {
 						file.filename()))
 					.log("createImage-save");
 
-				Mono<Void> copyFile = Mono.just(
-					Paths.get(UPLOAD_ROOT, file.filename())
-						.toFile())
+				Mono<Void> copyFile = Mono.just(Paths.get(UPLOAD_ROOT, file.filename()).toFile())
 					.log("createImage-picktarget")
 					.map(destFile -> {
 						try {
@@ -114,13 +112,12 @@ public class ImageService {
 
 		Mono<Object> deleteFile = Mono.fromRunnable(() -> {
 			try {
-				Files.deleteIfExists(
-					Paths.get(UPLOAD_ROOT, filename));
+				Files.deleteIfExists(Paths.get(UPLOAD_ROOT, filename));
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
 		})
-			.log("deleteImage-file");
+		.log("deleteImage-file");
 
 		return Mono.when(deleteDatabaseImage, deleteFile)
 			.log("deleteImage-when")

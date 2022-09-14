@@ -24,12 +24,27 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation group: 'org.synchronoss.cloud', name: 'nio-multipart-parser', version: '1.1.0'
+
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.23.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '4.1.4'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-safari-driver', version: '4.4.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
+    implementation group: 'cn.patterncat', name: 'springboot-webdriver-starter', version: '0.0.7'
+    implementation group: 'com.codeborne', name: 'selenide', version: '5.25.0-selenium-4.0.0-rc-1'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
-
+    testImplementation 'org.seleniumhq.selenium:htmlunit-driver'
+    testImplementation 'org.seleniumhq.selenium:selenium-java'
+    testImplementation 'org.seleniumhq.selenium:selenium-support:3.8.1'
+    testImplementation 'junit:junit:4.10'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 }
 
 tasks.named('test') {
